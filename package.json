@@ -1,0 +1,24 @@
+{
+  "name": "vue-next-practice",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build"
+  },
+  "dependencies": {
+    "vue": "^3.0.0-beta.1"
+  },
+  "devDependencies": {
+    "@vue/cli-plugin-typescript": "~4.3.0",
+    "@vue/cli-service": "~4.3.0",
+    "@vue/compiler-sfc": "^3.0.0-beta.1",
+    "typescript": "~3.8.3",
+    "vue-cli-plugin-vue-next": "latest"
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not dead"
+  ]
+}
