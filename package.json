@@ -7,12 +7,26 @@
     "build": "vue-cli-service build"
   },
   "dependencies": {
-    "vue": "^3.0.0-beta.1"
+    "@posva/vue-router-next": "^4.0.0-alpha.0",
+    "axios": "^0.19.2",
+    "better-scroll": "^1.15.2",
+    "fastclick": "^1.0.6",
+    "jsonp": "^0.2.1",
+    "vue": "^3.0.0-alpha.13",
+    "vue-router": "^4.0.0-alpha.5"
   },
   "devDependencies": {
+    "@types/better-scroll": "^1.12.1",
+    "@types/fastclick": "^1.0.28",
+    "@types/jsonp": "^0.2.0",
     "@vue/cli-plugin-typescript": "~4.3.0",
     "@vue/cli-service": "~4.3.0",
     "@vue/compiler-sfc": "^3.0.0-beta.1",
+    "autoprefixer": "^9.7.6",
+    "css-loader": "^3.5.2",
+    "postcss-loader": "^3.0.0",
+    "stylus": "^0.54.7",
+    "stylus-loader": "^3.0.2",
     "typescript": "~3.8.3",
     "vue-cli-plugin-vue-next": "latest"
   },
