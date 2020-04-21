@@ -1,7 +1,7 @@
 <!--
  * @Author: xujun
  * @Date: 2020-04-20 10:18:30
- * @LastEditTime: 2020-04-21 15:05:02
+ * @LastEditTime: 2020-04-21 16:24:04
  * @LastEditors: xujun
  * @FilePath: /vue-next-practice/src/base/slider/slider.vue
  * @Description: 轮播图组件
@@ -22,6 +22,12 @@
 import { onMounted, onUnmounted, nextTick, reactive, toRefs } from 'vue'
 import Slider, { SliderOption } from './helpers/slider'
 import BScroll from 'better-scroll'
+
+interface StateInterface {
+  sliderRef: HTMLBaseElement | null
+  sliderGroupRef: HTMLBaseElement | null
+}
+
 export default {
   name: 'Slider',
   props: {
@@ -39,7 +45,7 @@ export default {
     }
   },
   setup(props) {
-    const state = reactive({
+    const state = reactive<StateInterface>({
       sliderRef: null,
       sliderGroupRef: null
     })
