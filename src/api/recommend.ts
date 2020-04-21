@@ -1,7 +1,7 @@
 /*
  * @Author: xujun
  * @Date: 2020-04-17 16:24:31
- * @LastEditTime: 2020-04-20 11:46:33
+ * @LastEditTime: 2020-04-21 15:46:45
  * @LastEditors: xujun
  * @FilePath: /vue-next-practice/src/api/recommend.ts
  * @Description: recommend api
@@ -56,7 +56,7 @@ export function getRecommend<T=any> (): Promise<T> {
 
 export function getDiscList<T=any>(): Promise<T> {
   // 线上环境地址，同学们根据自己的需要配置修改
-  const url = debug ? '/api/getDiscList' : 'http://ustbhuangyi.com/music/api/getDiscList'
+  const url = '/api/getDiscList'
 
   const data = Object.assign({}, commonParams, {
     platform: 'yqq',
