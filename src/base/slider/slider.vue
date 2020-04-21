@@ -1,15 +1,15 @@
 <!--
  * @Author: xujun
  * @Date: 2020-04-20 10:18:30
- * @LastEditTime: 2020-04-20 16:09:26
+ * @LastEditTime: 2020-04-21 15:05:02
  * @LastEditors: xujun
  * @FilePath: /vue-next-practice/src/base/slider/slider.vue
  * @Description: 轮播图组件
  -->
 
 <template>
-  <div class="slider" ref="slider">
-    <div class="slider-group" ref='sliderGroup'>
+  <div class="slider" ref="sliderRef">
+    <div class="slider-group" ref='sliderGroupRef'>
       <slot></slot>
     </div>
     <div class="dots">
@@ -20,9 +20,8 @@
 
 <script lang="ts">
 import { onMounted, onUnmounted, nextTick, reactive, toRefs } from 'vue'
-import { initSlider, destroySlider } from './helpers/slider'
+import Slider, { SliderOption } from './helpers/slider'
 import BScroll from 'better-scroll'
-import { StateInterface } from '@/types/slider'
 export default {
   name: 'Slider',
   props: {
@@ -40,25 +39,26 @@ export default {
     }
   },
   setup(props) {
-    const state = reactive<StateInterface>({
-      slider: null,
-      sliderGroup: null,
-      dots: [],
-      currentPageIndex: 0
+    const state = reactive({
+      sliderRef: null,
+      sliderGroupRef: null
     })
-    let sliderInstance: BScroll
+    const slider = new Slider(props as SliderOption)
 
     onMounted(async() => {
       await nextTick()
-      const { slider, sliderGroup } = state
-      sliderInstance = initSlider(state, props)
+      const { sliderRef, sliderGroupRef } = state
+      slider.init(sliderRef!, sliderGroupRef!)
     })
 
     onUnmounted(() => {
-      destroySlider()
+      slider.destroy()
     })
-    
-    return toRefs(state)
+
+    return {
+      ...toRefs(state),
+      ...toRefs(slider.state)
+    }
   }
 }
 </script>
