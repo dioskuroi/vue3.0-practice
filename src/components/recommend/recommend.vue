@@ -1,21 +1,21 @@
 <!--
  * @Author: xujun
  * @Date: 2020-04-17 14:59:05
- * @LastEditTime: 2020-04-21 16:17:24
+ * @LastEditTime: 2020-04-22 14:57:35
  * @LastEditors: xujun
  * @FilePath: /vue-next-practice/src/components/recommend/recommend.vue
  * @Description: singer compoennts
  -->
 <template>
   <div class="recommend">
-    <div class="recommend-content">
+    <scroll class="recommend-content">
       <div>
         <div v-if="recommendList.length" class="slider-wrapper">
           <div class="slider-content">
             <m-slider>
               <div v-for="item in recommendList">
                 <a :href="item.linkUrl">
-                  <img :src="item.picUrl">
+                  <img class="needsclick" :src="item.picUrl">
                 </a>
               </div>
             </m-slider>
@@ -24,9 +24,9 @@
         <div class="recommend-list">
           <h1 class="list-title">热门歌单推荐</h1>
           <ul>
-            <li v-for="item in discList" class="item">
+            <li v-for="item in discList" class="item needsclick">
               <div class="icon">
-                <img width="60" height="60" :src="item.imgurl">
+                <img width="60" height="60" v-lazy="item.imgurl">
               </div>
               <div class="text">
                 <h2 class="name" v-html="item.creator.name"></h2>
@@ -36,28 +36,35 @@
           </ul>
         </div>
       </div>
-    </div>
+      <div class="loading-container" v-show="!discList.length">
+        <loading></loading>
+      </div>
+    </scroll>
   </div>
 </template>
 
 <script lang="ts">
 import MSlider from '../../base/slider/slider.vue'
+import Scroll from '../../base/scroll/scroll.vue'
+import Loading from '../../base/loading/loading.vue'
 
-import { onMounted } from 'vue'
 import getRecommendList from './helpers/getRecommendList'
 import getDiscList from './helpers/getDiscList'
 export default {
   name: 'Recommend',
   components: {
-    MSlider
+    MSlider,
+    Scroll,
+    Loading
   },
   setup() {
-    const recommendList = getRecommendList()
     const discList = getDiscList()
+    const recommendList = getRecommendList()
 
     return {
       recommendList,
-      discList
+      discList,
+      Loading
     }
   }
 }
