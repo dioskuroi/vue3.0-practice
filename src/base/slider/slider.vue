@@ -21,7 +21,6 @@
 <script lang="ts">
 import { onMounted, onUnmounted, nextTick, reactive, toRefs } from 'vue'
 import Slider, { SliderOption } from './helpers/slider'
-import BScroll from 'better-scroll'
 
 interface StateInterface {
   sliderRef: HTMLBaseElement | null
