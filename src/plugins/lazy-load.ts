@@ -1,10 +1,10 @@
 /*
  * @Author: xujun
  * @Date: 2020-04-22 14:12:52
- * @LastEditTime: 2020-04-22 14:38:49
+ * @LastEditTime: 2020-04-27 17:05:22
  * @LastEditors: xujun
- * @FilePath: /vue-next-practice/src/directive/index.ts
- * @Description: 通用指令
+ * @FilePath: /vue-next-practice/src/plugins/lazy-load.ts
+ * @Description: 懒加载插件
  */
 
 import { App } from 'vue'
