@@ -1,7 +1,7 @@
 /*
  * @Author: xujun
  * @Date: 2020-04-20 13:36:29
- * @LastEditTime: 2020-04-21 15:03:52
+ * @LastEditTime: 2020-04-27 13:58:48
  * @LastEditors: xujun
  * @FilePath: /vue-next-practice/src/base/slider/helpers/slider.ts
  * @Description: Slider class
