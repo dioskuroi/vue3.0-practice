@@ -7,4 +7,15 @@
  * @Description: 通用类型
  */
 
- declare type BaseElement = HTMLBaseElement | null
+import { Ref as VueRef, ComputedRef as VueComputedRef } from 'vue'
+
+// 全局声明
+declare global {
+  type BaseElement = HTMLBaseElement | null
+  type Ref<T> = VueRef<T>
+  type ComputedRef<T> = VueComputedRef<T>
+  interface ResponseInterface<T> {
+    code: number
+    data: T
+  }
+}
