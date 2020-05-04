@@ -15,6 +15,7 @@
 
 <script lang="ts">
 import initScroller from './helpers/init-scroller'
+import { Position } from 'better-scroll'
 import { ref } from 'vue'
 export default {
   name: 'Scroll',
@@ -26,18 +27,25 @@ export default {
     click: {
       type: Boolean,
       default: true
+    },
+    listenScroll: {
+      type: Boolean,
+      default: false
     }
   },
-  setup(props) {
+  setup(props, { emit }) {
     const wrapperRef = ref<BaseElement>(null)
     
     const scroller = initScroller(wrapperRef, { 
       probeType: props.probeType as number, 
-      click: props.click as boolean
+      click: props.click as boolean,
+      listenScroll: props.listenScroll as boolean,
+      onScroll: (pos) => { emit('scroll', pos) }
     })
 
     return {
-      wrapperRef
+      wrapperRef,
+      scroller
     }
   }
 }

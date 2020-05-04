@@ -24,9 +24,11 @@ export const lazyLoad = ({ directive }: App, { defaultImg }: LazyLoadOption) => 
     })
   })
 
-  directive('lazy', (el: HTMLImageElement, { value }) => {
-    el.setAttribute('src', defaultImg)
-    el.setAttribute('data-src', value)
-    observer.observe(el)
+  directive('lazy', {
+    mounted(el: HTMLImageElement, { value }) {
+      el.setAttribute('src', defaultImg)
+      el.setAttribute('data-src', value)
+      observer.observe(el)
+    }
   })
 }

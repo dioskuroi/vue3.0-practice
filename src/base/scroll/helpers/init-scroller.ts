@@ -7,14 +7,21 @@
  * @Description: 初始化 scroller
  */
 
-import BScroll, { BsOption } from 'better-scroll'
-import { ref, nextTick, onMounted, Ref, onUnmounted } from 'vue'
+import BScroll, { Position } from 'better-scroll'
+import { ref, nextTick, onMounted, onUnmounted } from 'vue'
 
 type Scroller = BScroll | null
 
+interface Option {
+  probeType: number
+  click: boolean
+  listenScroll: boolean
+  onScroll: (pos: Position) => any
+}
+
 export default function (
   wrapperRef: Ref<BaseElement>, 
-  option?: Partial<BsOption>
+  option?: Partial<Option>
 ): Ref<Scroller> {
   const scroller = ref<Scroller>(null)
 
@@ -22,9 +29,15 @@ export default function (
     if (!wrapperRef.value) return
     await nextTick()
     scroller.value = new BScroll(wrapperRef.value, option)
+    if (option?.listenScroll) {
+      scroller.value.on('scroll', option.onScroll!)
+    }
   })
 
   onUnmounted(() => {
+    if (option?.listenScroll) {
+      scroller.value?.off('scroll', option.onScroll!)
+    }
     scroller.value?.destroy()
   })
 
