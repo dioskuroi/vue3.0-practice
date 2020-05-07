@@ -14,11 +14,8 @@ export function addClass(el: Element, className: string): void {
   el.classList.add(className)
 }
 
-export function getData(el: Element, name: string, val?: string): null | void | string {
+export function getData(el: Element, name: string): string | null {
   const prefix = 'data-'
-  if (val) {
-    return el.setAttribute(prefix + name, val)
-  }
   return el.getAttribute(prefix + name)
 }
 

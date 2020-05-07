@@ -6,7 +6,7 @@
  * @FilePath: /vue-next-practice/src/components/recommend/helpers/recommendHook.ts
  * @Description: 轮播图数据结构
  */
-import { ref, onMounted, Ref } from 'vue'
+import { ref, onMounted } from 'vue'
 import { getRecommend } from '@/api/recommend'
 import { ERR_OK } from '@/api/config'
 
@@ -15,19 +15,19 @@ interface Recommend {
   picUrl: string
 }
 
-const recommendList = ref<Recommend[]>([])
-
-async function listRecommend (): Promise<void> {
-  try {
-    const { code, data } = await getRecommend()
-    if (code !== ERR_OK) return 
-    recommendList.value = data.slider
-  } catch (error) {
-    console.error(error)
-  }
-}
-
 export default function (): Ref<Recommend[]> {
+  const recommendList = ref<Recommend[]>([])
+
+  async function listRecommend (): Promise<void> {
+    try {
+      const { code, data } = await getRecommend()
+      if (code !== ERR_OK) return 
+      recommendList.value = data.slider
+    } catch (error) {
+      console.error(error)
+    }
+  }
+
   onMounted(() => {
     listRecommend()
   })
